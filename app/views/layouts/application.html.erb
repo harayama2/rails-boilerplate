@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
-    <title>RailsBoilerplate</title>
+    <title>Your App</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,7 +10,14 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+      <%= render "shared/navbar" %>
+      <div class="container mt-4 mx-auto">
+        <%= yield %>
+      </div>
+    </main>
+
+    <%= render "shared/footer" %>
   </body>
 </html>
