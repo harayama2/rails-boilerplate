@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
+  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   scope controller: :static do
     get :terms
@@ -10,5 +15,9 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
+  authenticated :user do
+    root "dashboard#show", as: :user_root
+  end
+
   root "static#index"
 end
