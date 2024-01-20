@@ -1,0 +1,28 @@
+<h1>News</h1>
+
+<div class="card">
+  <div class="card-body">
+    <% @announcements.each_with_index do |announcement, index| %>
+      <% if index != 0 %>
+        <div class="row"><div class="col"><hr /></div></div>
+      <% end %>
+
+      <div class="row announcement" id="<%= dom_id(announcement) %>">
+        <div class="col-sm-1 text-center">
+          <%= link_to announcements_path(anchor: dom_id(announcement)) do %>
+            <strong><%= announcement.published_at.strftime("%b %d") %></strong>
+          <% end %>
+        </div>
+        <div class="col">
+          <strong><%= announcement.title %></strong>
+          <span class="badge bg-success"><%= announcement.kind.titleize %></span>
+          <%= simple_format announcement.description %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if @announcements.empty? %>
+      <div>No announcements yet!</div>
+    <% end %>
+  </div>
+</div>
