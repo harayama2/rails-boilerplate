@@ -4,7 +4,7 @@ class Announcement < ApplicationRecord
   after_initialize :set_defaults
 
   validates :kind, :published_at, :title, :description, presence: true
-  validates :kind, inclusion: { in: KINDS }
+  validates :kind, inclusion: {in: KINDS}
 
   def set_defaults
     self.kind ||= KINDS.first
