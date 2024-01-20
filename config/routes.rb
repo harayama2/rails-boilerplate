@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  authenticate :user, lambda { |u| u.admin? } do
+    namespace :admin do
+      resources :users
+      root to: "users#index"
+    end
+  end
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
