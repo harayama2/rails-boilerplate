@@ -1,0 +1,9 @@
+---
+glob: "**/*.{html,text,js}{+*,}.erb"
+exclude:
+  - '**/vendor/**/*'
+  - '**/node_modules/**/*'
+linters:
+  # enforces self closing tag styles for void elements
+  SelfClosingTag:
+    enabled: false
