@@ -69,5 +69,5 @@ group :development do
   gem "letter_opener_web", "~> 2.0"
 end
 
-gem "administrate", "~> 0.20.0"
+gem "administrate", "~> 0.20.1"
 gem "devise", "~> 4.9"
