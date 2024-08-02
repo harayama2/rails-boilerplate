@@ -1,5 +1,11 @@
 <h1>News</h1>
 
+<%# Note the double equals sign "==" which marks the output as trusted and html safe: %>
+<div class="d-flex justify-content-between align-items-center">
+  <%= @pagy.from %> - <%= @pagy.to %> / <%= @pagy.count %>
+  <%== pagy_bootstrap_nav(@pagy) %>
+</div>
+
 <div class="card">
   <div class="card-body">
     <% @announcements.each_with_index do |announcement, index| %>

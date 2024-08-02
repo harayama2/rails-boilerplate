@@ -71,3 +71,4 @@ end
 
 gem "administrate", "~> 0.20.0"
 gem "devise", "~> 4.9"
+gem "pagy", "~> 9.0"

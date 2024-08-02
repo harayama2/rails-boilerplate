@@ -210,6 +210,7 @@ GEM
     nokogiri (1.16.0-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (9.0.2)
     parallel (1.24.0)
     parser (3.3.0.4)
       ast (~> 2.4.1)
@@ -369,6 +370,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   letter_opener_web (~> 2.0)
+  pagy (~> 9.0)
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.2)
