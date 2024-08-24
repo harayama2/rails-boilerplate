@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_17_143013) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_24_122632) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_143013) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "team_users", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.bigint "user_id", null: false
+    t.string "role", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_team_users_on_team_id"
+    t.index ["user_id"], name: "index_team_users_on_user_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.bigint "owner_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_teams_on_owner_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -69,4 +87,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_143013) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "team_users", "teams"
+  add_foreign_key "team_users", "users"
+  add_foreign_key "teams", "users", column: "owner_id"
 end
