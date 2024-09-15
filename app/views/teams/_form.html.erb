@@ -1,0 +1,12 @@
+<%= form_with model: team do |form| %>
+  <%= render "devise/shared/error_messages", resource: team %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
