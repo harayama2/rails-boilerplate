@@ -3,6 +3,12 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  helper_method :current_team
+
+  def current_team
+    @current_team = current_user.teams.find_by(id: session[:team_id]) if session[:team_id].present?
+  end
+
   protected
 
   def configure_permitted_parameters

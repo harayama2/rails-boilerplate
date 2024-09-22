@@ -1,3 +1,4 @@
 <div class="card my-4">
   <p><%= team.name %></p>
+  <p><%= button_to "Switch", switch_team_path(team), method: :patch, class: "btn btn-primary" %></p>
 </div>
