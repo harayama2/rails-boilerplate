@@ -1,4 +1,6 @@
 <div class="list-group">
   <%= link_to "Settings", edit_user_registration_path, class: "list-group-item list-group-item-action" %>
   <%= link_to "Password", edit_account_password_path, class: "list-group-item list-group-item-action" %>
+  <%= link_to "Teams", teams_path, class: "list-group-item list-group-item-action" %>
+  <%= link_to "Team Settings", team_path(current_team), class: "list-group-item list-group-item-action" %>
 </div>

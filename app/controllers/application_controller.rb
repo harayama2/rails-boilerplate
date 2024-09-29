@@ -3,10 +3,20 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  helper_method :current_team
+  helper_method :current_team, :current_team_user
 
   def current_team
     @_current_team ||= current_user.teams.find_by(id: session[:team_id]) if session[:team_id].present?
+  end
+
+  def current_team_user
+    return unless current_team
+    @_current_team_user ||= current_team.team_users.find_by(user: current_user)
+  end
+
+  def current_team_user_admin?
+    return false unless current_team_user
+    current_team_user.role == "admin"
   end
 
   protected

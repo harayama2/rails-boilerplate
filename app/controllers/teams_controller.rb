@@ -1,11 +1,13 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy, :switch]
+  before_action :require_team_admin, only: [:edit, :update, :destroy]
 
   def index
     @teams = current_user.teams
   end
 
   def show
+    redirect_to edit_team_path(@team)
   end
 
   def new
@@ -53,5 +55,11 @@ class TeamsController < ApplicationController
 
   def team_params
     params.require(:team).permit(:name)
+  end
+
+  def require_team_admin
+    unless current_team_user_admin?
+      redirect_to teams_path, alert: "管理者のみアクセスできます"
+    end
   end
 end
