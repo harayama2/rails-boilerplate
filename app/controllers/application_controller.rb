@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_team, :current_team_user
 
   def current_team
-    @_current_team ||= current_user.teams.find_by(id: session[:team_id]) if session[:team_id].present?
+    @_current_team ||= current_user.teams.find_by(id: session[:team_id]) || current_user.teams.first || current_user.create_default_team
   end
 
   def current_team_user

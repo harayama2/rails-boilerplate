@@ -7,7 +7,6 @@ class TeamsController < ApplicationController
   end
 
   def show
-    redirect_to edit_team_path(@team)
   end
 
   def new
@@ -35,9 +34,17 @@ class TeamsController < ApplicationController
   end
 
   def update
+    if @team.update(team_params)
+      redirect_to team_path(@team), notice: "Team updated"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @team.destroy!
+    session[:team_id] = current_user.teams.first.id
+    redirect_to root_path, notice: "Team destroyed"
   end
 
   def switch
